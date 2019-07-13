@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/channels-org/channels/master/schema/v0.1/channel.json#",
+  "title": "channel state",
+  "description": "JSON Schema for the state of the channel",
+
+  "type": "object",
+  "required": ["spec", "doc", "version", "items", "changes"],
+  "additionalProperties": false,
+  "properties": {
+    "spec": {"const": "channels"},
+    "doc": {"const": "state"},
+    "version": {"const": "0.1"},
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "stylesheet": {"$ref": "defs.json#optionalUri"},
+    "title": {"type": "string"},
+    "items": {
+      "title": "channel items",
+      "description": "mutable bi-directionally linked list of items",
+      "type": "object",
+      "patternProperties": {
+        "^[1-9][0-9]*$": {"$ref": "item.json"}
+      }
+    },
+    "changes": {
+      "title": "channel changes",
+      "description": "append-only array of channel state changes",
+      "type": "array",
+      "items": {"$ref": "change.json"}
+    }
+  }
+}

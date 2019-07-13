@@ -2,18 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/channels-org/channels/master/schema/v0.1/item.json#",
   "title": "channel item",
-  "description": "JSON Schema for the state of the channel item",
+  "description": "JSON Schema for the channel item",
 
   "type": "object",
   "required": ["id", "type", "created", "data"],
   "additionalProperties": false,
   "properties": {
-    "id": {
-      "title": "Item ID",
-      "description": "Item ID is 1-based sequential ID in the order of item creation",
-      "type": "integer",
-      "minimum": 1
-    },
+    "id": {"$ref": "defs.json#seqId"},
+    "prev": {"$ref": "defs.json#seqId"},
+    "next": {"$ref": "defs.json#seqId"},
+    "created": {"$ref": "defs.json#timestamp"},
+    "updated": {"$ref": "defs.json#timestamp"},
     "type": {
       "title": "Item type",
       "description": "Item type defines items structure, view and interactivity",
@@ -23,8 +22,6 @@
         {"pattern": "^x-([a-z]+-)*[a-z]+$"}
       ]
     },
-    "created": {"$ref": "defs.json#timestamp"},
-    "updated": {"$ref": "defs.json#timestamp"},
     "data": {
       "type": "object"
     }
