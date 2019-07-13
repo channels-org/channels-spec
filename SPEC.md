@@ -207,5 +207,3 @@ The server will respond with the acknolegment, the status of each requested chan
   ]
 }
 ```
-
-Note that while item index and the way it's addressed with standard JSON patch
