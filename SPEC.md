@@ -33,15 +33,17 @@ Channel state represented as JSON:
       }
     }
   ],
-  "ops": [
+  "changes": [
     {
       "id": "123456",
       "ts": "2019-07-13T12:13:32.000Z",
-      "patch": {
-        "op": "replace",
-        "path": "/items/12344/data/text",
-        "value": "Hello world"
-      }
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/items/12344/data/text",
+          "value": "Hello world"
+        }
+      ]
     }
   ]
 }
@@ -113,7 +115,7 @@ When channel state changes, channel server will send updates to the channel stat
 
 ```json
 {
-  "ops": [
+  "changes": [
     {
       "id": "123456",
       "ts": "2019-07-13T12:13:32.000Z",
@@ -133,15 +135,17 @@ Connected clients (if they have permissions) can send updates to the channel sta
 
 ```json
 {
-  "op_received": "123456",
-  "ops": [
+  "change_received": "123456",
+  "changes": [
     {
-      "op_req_id": "123e4567-e89b-12d3-a456-426655440000",
-      "patch": {
-        "op": "add",
-        "path": "/items/12345/data/width",
-        "value": "320"
-      }
+      "change_request": "123e4567-e89b-12d3-a456-426655440000",
+      "patch": [
+        {
+          "op": "add",
+          "path": "/items/12345/data/width",
+          "value": "320"
+        }
+      ]
     }
   ]
 }
@@ -153,33 +157,37 @@ The server will respond with the acknolegment, the status of each requested chan
 
 ```json
 {
-  "ops": [
+  "changes": [
     {
       "id": "1234567",
       "ts": "2019-07-13T12:13:35.000Z",
-      "patch": {
-        "op": "add",
-        "path": "/items/12345",
-        "value": {
-          "id": "12345",
-          "type": "text",
-          "created": "2019-07-13T12:13:35.000Z",
-          "data": {
-            "text": "Hello too"
+      "patch": [
+        {
+          "op": "add",
+          "path": "/items/12345",
+          "value": {
+            "id": "12345",
+            "type": "text",
+            "created": "2019-07-13T12:13:35.000Z",
+            "data": {
+              "text": "Hello too"
+            }
           }
         }
-      }
+      ]
     },
     {
       "id": "1234568",
       "ts": "2019-07-13T12:13:40.000Z",
-      "op_req_id": "123e4567-e89b-12d3-a456-426655440000",
+      "change_request": "123e4567-e89b-12d3-a456-426655440000",
       "status": "changed",
-      "patch": {
-        "op": "add",
-        "path": "/items/12346/data/width",
-        "value": "320"
-      }
+      "patch": [
+        {
+          "op": "add",
+          "path": "/items/12346/data/width",
+          "value": "320"
+        }
+      ]
     }
   ]
 }
