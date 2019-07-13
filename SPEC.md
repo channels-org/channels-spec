@@ -14,9 +14,11 @@ Channel state represented as JSON:
   "uri": "https://www.example.com/channels/ch1",
   "stylesheet": true,
   "title": "Sample channel",
-  "items": [
-    {
-      "id": "12344",
+  "items": {
+    "12344": {
+      "id": 12344,
+      "prev": 12343,
+      "next": 12345,
       "type": "text",
       "created": "2019-07-13T12:13:22.222Z",
       "updated": "2019-07-13T12:13:32.000Z",
@@ -24,8 +26,9 @@ Channel state represented as JSON:
         "text": "Hello world"
       }
     },
-    {
-      "id": "12345",
+    "12345": {
+      "id": 12345,
+      "prev": 12344,
       "type": "image",
       "created": "2019-07-13T12:13:27.000Z",
       "data": {
@@ -35,7 +38,7 @@ Channel state represented as JSON:
   ],
   "changes": [
     {
-      "id": "123456",
+      "id": 123456,
       "ts": "2019-07-13T12:13:32.000Z",
       "patch": [
         {
@@ -117,7 +120,7 @@ When channel state changes, channel server will send updates to the channel stat
 {
   "changes": [
     {
-      "id": "123456",
+      "id": 123456,
       "ts": "2019-07-13T12:13:32.000Z",
       "patch": {
         "op": "replace",
@@ -135,7 +138,7 @@ Connected clients (if they have permissions) can send updates to the channel sta
 
 ```json
 {
-  "change_received": "123456",
+  "change_received": 123456,
   "changes": [
     {
       "change_request": "123e4567-e89b-12d3-a456-426655440000",
@@ -159,14 +162,26 @@ The server will respond with the acknolegment, the status of each requested chan
 {
   "changes": [
     {
-      "id": "1234567",
+      "id": 123457,
       "ts": "2019-07-13T12:13:35.000Z",
       "patch": [
         {
+          "op": "replace",
+          "path": "/items/12344/next",
+          "value": 12346
+        },
+        {
+          "op": "replace",
+          "path": "/items/12345/prev",
+          "value": 12346
+        },
+        {
           "op": "add",
-          "path": "/items/12345",
+          "path": "/items/12346",
           "value": {
-            "id": "12345",
+            "id": 12346,
+            "prev": 12344,
+            "next": 12345,
             "type": "text",
             "created": "2019-07-13T12:13:35.000Z",
             "data": {
@@ -177,14 +192,14 @@ The server will respond with the acknolegment, the status of each requested chan
       ]
     },
     {
-      "id": "1234568",
+      "index": 123458,
       "ts": "2019-07-13T12:13:40.000Z",
       "change_request": "123e4567-e89b-12d3-a456-426655440000",
-      "status": "changed",
+      "status": "accepted",
       "patch": [
         {
           "op": "add",
-          "path": "/items/12346/data/width",
+          "path": "/items/12345/data/width",
           "value": "320"
         }
       ]
@@ -192,3 +207,5 @@ The server will respond with the acknolegment, the status of each requested chan
   ]
 }
 ```
+
+Note that while item index and the way it's addressed with standard JSON patch

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/channels-org/channels/master/schema/v0.1/item.json#",
+  "title": "channel item",
+  "description": "JSON Schema for the state of the channel item",
+
+  "type": "object",
+  "required": ["id", "type", "created", "data"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Item ID",
+      "description": "Item ID is 1-based sequential ID in the order of item creation",
+      "type": "integer",
+      "minimum": 1
+    },
+    "type": {
+      "title": "Item type",
+      "description": "Item type defines items structure, view and interactivity",
+      "type": "string",
+      "anyOf": [
+        {"enum": ["text", "image"]},
+        {"pattern": "^x-([a-z]+-)*[a-z]+$"}
+      ]
+    },
+    "created": {"$ref": "defs.json#timestamp"},
+    "updated": {"$ref": "defs.json#timestamp"},
+    "data": {
+      "type": "object"
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "type": {"const": "text"},
+        "data": {
+          "required": ["text"],
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "type": {"const": "image"},
+        "data": {
+          "required": ["uri"],
+          "additionalProperties": false,
+          "properties": {
+            "uri": {
+              "type": "string",
+              "format": "uri"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
