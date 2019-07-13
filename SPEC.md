@@ -35,7 +35,7 @@ Channel state represented as JSON:
         "uri": "https://example.com/img/image.png"
       }
     }
-  ],
+  },
   "changes": [
     {
       "id": 123456,
