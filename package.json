@@ -1,0 +1,16 @@
+{
+  "name": "channels",
+  "version": "0.1.0",
+  "description": "Web application framework to support discrete channels/streams of content/chat items as part of (or instead of) web pages.",
+  "main": "index.js",
+  "repository": "git@github.com:channels-org/channels.git",
+  "author": "Evgeny Poberezkin <e.poberezkin@me.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha schema/tests/{**/,}*.spec.js -R spec"
+  },
+  "devDependencies": {
+    "ajv": "^6.10.1",
+    "mocha": "^6.1.4"
+  }
+}

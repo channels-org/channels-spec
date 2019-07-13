@@ -56,10 +56,12 @@
               "format": "uri"
             },
             "width": {
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             },
             "height": {
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             }
           }
         }
