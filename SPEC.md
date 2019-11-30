@@ -141,7 +141,7 @@ Connected clients (if they have permissions) can send updates to the channel sta
   "change_received": 123456,
   "changes": [
     {
-      "change_request": "123e4567-e89b-12d3-a456-426655440000",
+      "change_request_id": "123e4567-e89b-12d3-a456-426655440000",
       "patch": [
         {
           "op": "add",
@@ -194,7 +194,7 @@ The server will respond with the acknolegment, the status of each requested chan
     {
       "index": 123458,
       "ts": "2019-07-13T12:13:40.000Z",
-      "change_request": "123e4567-e89b-12d3-a456-426655440000",
+      "change_request_id": "123e4567-e89b-12d3-a456-426655440000",
       "status": "accepted",
       "patch": [
         {

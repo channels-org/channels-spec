@@ -1,0 +1,76 @@
+[
+  {
+    "description": "sample channel in SPEC.md",
+    "schema": "https://raw.githubusercontent.com/channels-org/channels/master/schema/v0.1/channel.json#",
+    "tests": [
+      {
+        "description": "sample channel",
+        "data": {
+          "spec": "channels",
+          "doc": "state",
+          "version": "0.1",
+          "uri": "https://www.example.com/channels/ch1",
+          "stylesheet": true,
+          "title": "Sample channel",
+          "items": {
+            "12344": {
+              "id": 12344,
+              "prev": 12343,
+              "next": 12345,
+              "type": "text",
+              "created": "2019-07-13T12:13:22.222Z",
+              "updated": "2019-07-13T12:13:32.000Z",
+              "data": {
+                "text": "Hello world"
+              }
+            },
+            "12345": {
+              "id": 12345,
+              "prev": 12344,
+              "type": "image",
+              "created": "2019-07-13T12:13:27.000Z",
+              "data": {
+                "uri": "https://example.com/img/image.png"
+              }
+            }
+          },
+          "changes": [
+            {
+              "id": 123456,
+              "ts": "2019-07-13T12:13:32.000Z",
+              "patch": [
+                {
+                  "op": "replace",
+                  "path": "/items/12344/data/text",
+                  "value": "Hello world"
+                }
+              ]
+            }
+          ]
+        },
+        "valid": true
+      }
+    ]
+  },
+  {
+    "description": "sample channel change in SPEC.md",
+    "schema": "https://raw.githubusercontent.com/channels-org/channels/master/schema/v0.1/change.json#",
+    "tests": [
+      {
+        "description": "sample channel change",
+        "data": {
+          "id": 123456,
+          "ts": "2019-07-13T12:13:32.000Z",
+          "patch": [
+            {
+              "op": "replace",
+              "path": "/items/12344/data/text",
+              "value": "Hello world"
+            }
+          ]
+        },
+        "valid": true
+      }
+    ]
+  }
+]
